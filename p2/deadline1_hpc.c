@@ -58,20 +58,18 @@ int main(int argc, char *argv[]){
   fclose(param);
 
   int myrank, np;
+  MPI_Status status ;
 
   MPI_Init(&argc , &argv);
   MPI_Comm_size(MPI_COMM_WORLD , &np); //le nombre total de process MPI
   MPI_Comm_rank(MPI_COMM_WORLD , &myrank); //dans quel process on est
 
   if(flag == 0){
-    explicitEuler(myrank, np, parameters, map, h, delta_xh, delta_yh);
+    explicitEuler(myrank, np, parameters, map, h, delta_xh, delta_yh, status);
   }
   else{
     //implicitEuler();
   }
 
-
-
-  	
   return 0 ; 
 }
